@@ -15,5 +15,6 @@
         <property name="show_sql">true</property>
 
         <mapping class = "models.Studio"/>
+        <mapping class = "models.Film"/>
     </session-factory>
 </hibernate-configuration>

@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="studios")
@@ -10,6 +11,7 @@ public class Studio {
     private String name;
     private String location;
     private int bugdet;
+    private Set<Film> films;
 
     public Studio() {
     }
@@ -56,5 +58,14 @@ public class Studio {
 
     public void setBugdet(int bugdet) {
         this.bugdet = bugdet;
+    }
+
+    @OneToMany(mappedBy="studio")
+    public Set<Film> getFilms() {
+        return films;
+    }
+
+    public void setFilms(Set<Film> films) {
+        this.films = films;
     }
 }
