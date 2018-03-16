@@ -16,5 +16,6 @@
 
         <mapping class = "models.Studio"/>
         <mapping class = "models.Film"/>
+        <mapping class = "models.Agent"/>
     </session-factory>
 </hibernate-configuration>

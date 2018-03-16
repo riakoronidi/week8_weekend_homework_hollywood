@@ -1,5 +1,7 @@
 package models;
 
+import behaviours.IPay;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -68,4 +70,6 @@ public class Studio {
     public void setFilms(Set<Film> films) {
         this.films = films;
     }
+
+
 }

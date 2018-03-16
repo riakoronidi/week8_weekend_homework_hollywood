@@ -1,5 +1,7 @@
 package models;
 
+import behaviours.IPay;
+
 import javax.persistence.*;
 
 @Entity
