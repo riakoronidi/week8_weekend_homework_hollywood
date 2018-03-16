@@ -1,5 +1,6 @@
 import db.DBHelper;
 import models.Agent;
+import models.Director;
 import models.Film;
 import models.Studio;
 
@@ -26,7 +27,14 @@ public class Runner {
         DBHelper.saveOrUpdate(film5);
 
 
-        Agent agent = new Agent("Estelle");
-        DBHelper.saveOrUpdate(agent);
+        Agent agent1 = new Agent("Estelle");
+        DBHelper.saveOrUpdate(agent1);
+
+        Director director1 = new Director("Kenneth", 100, agent1);
+        Director director2 = new Director("Julia", 100, agent1);
+        DBHelper.saveOrUpdate(director1);
+        DBHelper.saveOrUpdate(director2);
+
+
     }
 }

@@ -1,23 +1,23 @@
 package models;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
-@Table(name = "agents")
-public class Agent {
+@Table(name = "directors")
+public class Director {
 
     private int id;
     private String name;
     private int cash;
-    private Set<Director> directors;
+    private Agent agent;
 
-    public Agent() {
+    public Director() {
     }
 
-    public Agent(String name) {
+    public Director(String name, int cash, Agent agent) {
         this.name = name;
-        this.cash = 0;
+        this.cash = cash;
+        this.agent = agent;
     }
 
     @Id
@@ -49,12 +49,13 @@ public class Agent {
         this.cash = cash;
     }
 
-    @OneToMany(mappedBy = "agent")
-    public Set<Director> getDirectors() {
-        return directors;
+    @ManyToOne
+    @JoinColumn(name = "agent_id",nullable = false)
+    public Agent getAgent() {
+        return agent;
     }
 
-    public void setDirectors(Set<Director> directors) {
-        this.directors = directors;
+    public void setAgent(Agent agent) {
+        this.agent = agent;
     }
 }
