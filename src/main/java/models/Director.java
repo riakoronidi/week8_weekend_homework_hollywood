@@ -74,7 +74,7 @@ public class Director {
         this.films.add(film);
     }
 
-    public void getPaid(){
+    public void directorGetPaid(){
         for (Film film : films)
         this.cash += film.calculatePay();
     }

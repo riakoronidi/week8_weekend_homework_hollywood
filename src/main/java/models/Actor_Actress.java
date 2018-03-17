@@ -79,5 +79,10 @@ public class Actor_Actress {;
     public void addFilm(Film film){
         this.films.add(film);
     }
+
+    public void starGetPaid(){
+        for (Film film : films)
+            this.cash += film.calculatePay();
+    }
 }
 
