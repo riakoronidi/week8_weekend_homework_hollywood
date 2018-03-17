@@ -1,5 +1,7 @@
 package db;
 
+import models.Director;
+import models.Film;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -89,6 +91,16 @@ public class DBHelper {
         List<T> results = null;
         Criteria criteria = session.createCriteria(classType);
         results = getList(criteria);
+        return results;
+    }
+
+    public static List<Film> getFilmByDirector(Director director) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<Film> results = null;
+        Criteria cr = session.createCriteria(Film.class);
+        cr.add(Restrictions.eq("director", director));
+//        cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        results = getList(cr);
         return results;
     }
 

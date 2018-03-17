@@ -18,5 +18,6 @@
         <mapping class = "models.Film"/>
         <mapping class = "models.Agent"/>
         <mapping class = "models.Director"/>
+        <mapping class = "models.Actor_Actress"/>
     </session-factory>
 </hibernate-configuration>

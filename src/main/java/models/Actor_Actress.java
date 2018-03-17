@@ -1,22 +1,20 @@
 package models;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
-@Table(name = "directors")
-public class Director {
+@Table(name = "actors_actresses")
+public class Actor_Actress {;
 
     private int id;
     private String name;
     private int cash;
     private Agent agent;
-    private Set<Film> films;
 
-    public Director() {
+    public Actor_Actress() {
     }
 
-    public Director(String name, int cash, Agent agent) {
+    public Actor_Actress(String name, int cash, Agent agent) {
         this.name = name;
         this.cash = cash;
         this.agent = agent;
@@ -52,7 +50,7 @@ public class Director {
     }
 
     @ManyToOne
-    @JoinColumn(name = "agent_id",nullable = false)
+    @JoinColumn(name = "agent_id", nullable = false)
     public Agent getAgent() {
         return agent;
     }
@@ -60,22 +58,5 @@ public class Director {
     public void setAgent(Agent agent) {
         this.agent = agent;
     }
-
-    @OneToMany(mappedBy = "director")
-    public Set<Film> getFilms() {
-        return films;
-    }
-
-    public void setFilms(Set<Film> films) {
-        this.films = films;
-    }
-
-    public void addFilm(Film film){
-        this.films.add(film);
-    }
-
-    public void getPaid(){
-        for (Film film : films)
-        this.cash += film.calculatePay();
-    }
 }
+

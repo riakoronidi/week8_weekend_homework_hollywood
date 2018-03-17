@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -11,6 +12,7 @@ public class Agent {
     private String name;
     private int cash;
     private Set<Director> directors;
+    private Set<Actor_Actress> actor_actresses;
 
     public Agent() {
     }
@@ -56,5 +58,14 @@ public class Agent {
 
     public void setDirectors(Set<Director> directors) {
         this.directors = directors;
+    }
+
+    @OneToMany(mappedBy = "agent")
+    public Set<Actor_Actress> getActor_actresses() {
+        return actor_actresses;
+    }
+
+    public void setActor_actresses(Set<Actor_Actress> actor_actresses) {
+        this.actor_actresses = actor_actresses;
     }
 }

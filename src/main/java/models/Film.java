@@ -3,10 +3,12 @@ package models;
 import behaviours.IPay;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "films")
-public class Film {
+public class Film implements IPay{
 
     private int id;
     private String title;
@@ -14,17 +16,19 @@ public class Film {
     private int duration;
     private int budget;
     private Studio studio;
+    private Director director;
 
 
     public Film() {
     }
 
-    public Film(String title, String genre, int duration, int budget, Studio studio) {
+    public Film(String title, String genre, int duration, int budget, Studio studio, Director director) {
         this.title = title;
         this.genre = genre;
         this.duration = duration;
         this.budget = budget;
         this.studio = studio;
+        this.director = director;
     }
 
     @Id
@@ -82,5 +86,22 @@ public class Film {
 
     public void setStudio(Studio studio) {
         this.studio = studio;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "director_id", nullable = false)
+    public Director getDirector() {
+        return director;
+    }
+
+    public void setDirector(Director director) {
+        this.director = director;
+    }
+
+
+    public int calculatePay() {
+        return (int)(this.budget * 0.1);
+//        int result = (int)(this.budget - percentage);
+//        return percentage;
     }
 }
