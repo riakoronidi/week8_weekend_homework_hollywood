@@ -1,6 +1,8 @@
 package models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "actors_actresses")
@@ -10,6 +12,7 @@ public class Actor_Actress {;
     private String name;
     private int cash;
     private Agent agent;
+    private Set<Film> films;
 
     public Actor_Actress() {
     }
@@ -18,6 +21,7 @@ public class Actor_Actress {;
         this.name = name;
         this.cash = cash;
         this.agent = agent;
+        this.films = new HashSet<Film>();
     }
 
     @Id
@@ -57,6 +61,23 @@ public class Actor_Actress {;
 
     public void setAgent(Agent agent) {
         this.agent = agent;
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "actor_actress_film",
+            joinColumns = {@JoinColumn(name = "actor_actress_id",nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "film_id", nullable = false, updatable = false)}
+    )
+    public Set<Film> getFilms() {
+        return films;
+    }
+
+    public void setFilms(Set<Film> films) {
+        this.films = films;
+    }
+
+    public void addFilm(Film film){
+        this.films.add(film);
     }
 }
 

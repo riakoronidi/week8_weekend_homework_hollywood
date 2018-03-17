@@ -1,5 +1,6 @@
 package db;
 
+import models.Actor_Actress;
 import models.Director;
 import models.Film;
 import org.hibernate.Criteria;
@@ -104,4 +105,21 @@ public class DBHelper {
         return results;
     }
 
+
+//public static List<Film> getFilmByActor(Actor_Actress actor_actress) {
+//    session = HibernateUtil.getSessionFactory().openSession();
+//    List<Film> results = null;
+//    Criteria cr = session.createCriteria(Film.class);
+//    cr.add(Restrictions.eq("actor_actress", actor_actress));
+////        cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+//    results = getList(cr);
+//    return results;
+//}
+
+    public static void addActorToFilm(Actor_Actress actor_actress, Film film){
+        actor_actress.addFilm(film);
+        film.addStar(actor_actress);
+        saveOrUpdate(actor_actress);
+        saveOrUpdate(film);
+    }
 }

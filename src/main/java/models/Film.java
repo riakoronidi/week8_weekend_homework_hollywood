@@ -17,6 +17,7 @@ public class Film implements IPay{
     private int budget;
     private Studio studio;
     private Director director;
+    private Set<Actor_Actress> actors_actresses;
 
 
     public Film() {
@@ -29,6 +30,7 @@ public class Film implements IPay{
         this.budget = budget;
         this.studio = studio;
         this.director = director;
+        this.actors_actresses = new HashSet<Actor_Actress>();
     }
 
     @Id
@@ -98,10 +100,22 @@ public class Film implements IPay{
         this.director = director;
     }
 
+    @ManyToMany(mappedBy = "films", fetch = FetchType.EAGER)
+    public Set<Actor_Actress> getActors_actresses() {
+        return actors_actresses;
+    }
+
+    public void setActors_actresses(Set<Actor_Actress> actors_actresses) {
+        this.actors_actresses = actors_actresses;
+    }
 
     public int calculatePay() {
         return (int)(this.budget * 0.1);
 //        int result = (int)(this.budget - percentage);
 //        return percentage;
+    }
+
+    public void addStar(Actor_Actress actor_actress){
+        this.actors_actresses.add(actor_actress);
     }
 }

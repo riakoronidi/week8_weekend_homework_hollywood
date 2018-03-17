@@ -47,6 +47,13 @@ public class Runner {
 
         List<Film> ListOfFilmsByDirector = DBHelper.getFilmByDirector(director1);
 
+        DBHelper.addActorToFilm(actor1, film5);
+        DBHelper.addActorToFilm(actor1, film1);
+        DBHelper.addActorToFilm(actor2, film1);
+        Actor_Actress foundStarsByFilm = DBHelper.find(Actor_Actress.class, actor1.getId());
+        Film foundFilmsByStar = DBHelper.find(Film.class, film1.getId());
+
+
 
     }
 }
