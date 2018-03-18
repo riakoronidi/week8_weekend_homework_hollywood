@@ -31,13 +31,13 @@ public class DBHelper {
         }
     }
 
-    public static <T> List<T> getList(Criteria criteria){
+    public static <T> List<T> getList(Criteria criteria) {
         List<T> results = null;
         try {
             transaction = session.beginTransaction();
             results = criteria.list();
             transaction.commit();
-        } catch (HibernateException e){
+        } catch (HibernateException e) {
             transaction.rollback();
             e.printStackTrace();
         } finally {
@@ -47,13 +47,13 @@ public class DBHelper {
     }
 
 
-    public static <T> T getUnique(Criteria criteria){
+    public static <T> T getUnique(Criteria criteria) {
         T result = null;
         try {
             transaction = session.beginTransaction();
-            result = (T)criteria.uniqueResult();
+            result = (T) criteria.uniqueResult();
             transaction.commit();
-        } catch (HibernateException e){
+        } catch (HibernateException e) {
             transaction.rollback();
             e.printStackTrace();
         } finally {
@@ -63,7 +63,7 @@ public class DBHelper {
     }
 
 
-    public static void delete(Object object){
+    public static void delete(Object object) {
         session = HibernateUtil.getSessionFactory().openSession();
         try {
             transaction = session.beginTransaction();
@@ -78,7 +78,7 @@ public class DBHelper {
     }
 
     //find unique by ID
-    public static <T> T find(Class classType, int id){
+    public static <T> T find(Class classType, int id) {
         session = HibernateUtil.getSessionFactory().openSession();
         T result = null;
         Criteria criteria = session.createCriteria(classType);
@@ -87,7 +87,7 @@ public class DBHelper {
         return result;
     }
 
-    public static <T> List<T> getAll(Class classType){
+    public static <T> List<T> getAll(Class classType) {
         session = HibernateUtil.getSessionFactory().openSession();
         List<T> results = null;
         Criteria criteria = session.createCriteria(classType);
@@ -106,20 +106,25 @@ public class DBHelper {
     }
 
 
-//public static List<Film> getFilmByActor(Actor_Actress actor_actress) {
-//    session = HibernateUtil.getSessionFactory().openSession();
-//    List<Film> results = null;
-//    Criteria cr = session.createCriteria(Film.class);
-//    cr.add(Restrictions.eq("actor_actress", actor_actress));
-////        cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-//    results = getList(cr);
-//    return results;
-//}
-
-    public static void addActorToFilm(Actor_Actress actor_actress, Film film){
+    public static void addActorToFilm(Actor_Actress actor_actress, Film film) {
         actor_actress.addFilm(film);
         film.addStar(actor_actress);
         saveOrUpdate(actor_actress);
         saveOrUpdate(film);
     }
+
+
+    public static List<Film> getFilmByActorAndGenre(Actor_Actress actor_actress, String genre) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<Film> results = null;
+        Criteria cr = session.createCriteria(Film.class);
+        Criteria cr2 = session.createCriteria(Film.class);
+        cr.add(Restrictions.eq("actors_actresses", actor_actress));
+//        cr2.add(Restrictions.eq("genre", genre));
+//        cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        results = getList(cr);
+        return results;
+    }
+
 }
+

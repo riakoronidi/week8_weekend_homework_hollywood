@@ -110,9 +110,9 @@ public class Film implements IPay{
     }
 
     public int calculatePay() {
-        return (int)(this.budget * 0.1);
-//        int result = (int)(this.budget - percentage);
-//        return percentage;
+        int percentage = (int)(this.budget * 0.1);
+        this.budget -= percentage;
+        return percentage;
     }
 
     public void addStar(Actor_Actress actor_actress){

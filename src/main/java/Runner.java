@@ -34,7 +34,7 @@ public class Runner {
         Film film2 = new Film("The Lion King","Animation", 88, 45000000, studio2, director2);
         Film film3 = new Film("The Godfather","Crime", 175, 6000000, studio2, director1);
         Film film4 = new Film("Lord of the Rings: The Fellowship of the Ring","Fantasy", 178, 93000000, studio1, director1);
-        Film film5 = new Film("Murder on the Orient Express ","Crime", 114, 55000000, studio1, director1);
+        Film film5 = new Film("Murder on the Orient Express ","Drama", 114, 55000000, studio1, director1);
 
         DBHelper.saveOrUpdate(film1);
         DBHelper.saveOrUpdate(film2);
@@ -50,10 +50,11 @@ public class Runner {
         DBHelper.addActorToFilm(actor1, film5);
         DBHelper.addActorToFilm(actor1, film1);
         DBHelper.addActorToFilm(actor2, film1);
-        Actor_Actress foundStarsByFilm = DBHelper.find(Actor_Actress.class, actor1.getId());
-        Film foundFilmsByStar = DBHelper.find(Film.class, film1.getId());
+        Actor_Actress foundFilmsByStar = DBHelper.find(Actor_Actress.class, actor1.getId());
+        Film foundStarsByFilm = DBHelper.find(Film.class, film1.getId());
 
 
+//        List<Film> found = DBHelper.getFilmByActorAndGenre(actor1,film1.getGenre());
 
     }
 }
