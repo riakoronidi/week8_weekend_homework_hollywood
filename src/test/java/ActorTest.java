@@ -41,6 +41,7 @@ public class ActorTest {
         assertEquals(180, film.getBudget());
     }
 
+//    ignore this test - its not working, no time to fix..
 //    @Test
 //    public void directorGetsPaid() {
 //        Director foundDirector = DBHelper.find(Director.class, director.getId());

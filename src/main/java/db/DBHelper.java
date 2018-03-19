@@ -113,18 +113,18 @@ public class DBHelper {
         saveOrUpdate(film);
     }
 
-
-    public static List<Film> getFilmByActorAndGenre(Actor_Actress actor_actress, String genre) {
-        session = HibernateUtil.getSessionFactory().openSession();
-        List<Film> results = null;
-        Criteria cr = session.createCriteria(Film.class);
-        Criteria cr2 = session.createCriteria(Film.class);
-        cr.add(Restrictions.eq("actors_actresses", actor_actress));
-//        cr2.add(Restrictions.eq("genre", genre));
-//        cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        results = getList(cr);
-        return results;
-    }
+//ignore this. its not working..
+//    public static List<Film> getFilmByActorAndGenre(Actor_Actress actor_actress, String genre) {
+//        session = HibernateUtil.getSessionFactory().openSession();
+//        List<Film> results = null;
+//        Criteria cr = session.createCriteria(Film.class);
+//        Criteria cr2 = session.createCriteria(Film.class);
+//        cr.add(Restrictions.eq("actors_actresses", actor_actress));
+////        cr2.add(Restrictions.eq("genre", genre));
+////        cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+//        results = getList(cr);
+//        return results;
+//    }
 
 }
 
